@@ -1,0 +1,180 @@
+---
+---
+<section class="projects" id="proyek">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">// Karya Terpilih</span>
+      <h2 class="section-title">Studi Kasus &amp; Sistem Nyata</h2>
+      <p class="section-desc">Kombinasi rekayasa perangkat lunak modern, performa tinggi, dan pengalaman pengguna yang mulus.</p>
+    </div>
+
+    <div class="projects-grid">
+      
+      <!-- Case Study 1: Smart IoT -->
+      <article class="project-card-strv reveal">
+        <div class="project-info">
+          <div class="project-top">
+            <span class="project-badge">IoT &amp; Cloud Analytics</span>
+            <h3 class="project-title">Smart Monitoring Dashboard</h3>
+            <p class="project-summary">Platform telemetri IoT industri untuk pemantauan suhu, kelembaban, dan sensor multi-node secara real-time dengan latency ultra rendah.</p>
+          </div>
+          <div class="project-stats">
+            <div class="stat-item">
+              <p class="stat-num">&lt; 150ms</p>
+              <p class="stat-text">Telemetry Latency</p>
+            </div>
+            <div class="stat-item">
+              <p class="stat-num">99.9%</p>
+              <p class="stat-text">Hardware Uptime</p>
+            </div>
+          </div>
+          <div class="project-tags">
+            <span class="tag-pill">ESP32</span>
+            <span class="tag-pill">MQTT</span>
+            <span class="tag-pill">Laravel</span>
+            <span class="tag-pill">MySQL</span>
+            <span class="tag-pill">WebSockets</span>
+          </div>
+        </div>
+        <div class="project-visual">
+          <div class="mockup-terminal">
+            <div class="mockup-terminal-bar">
+              <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+              <span class="mockup-terminal-title">node-sensor-feed // stream</span>
+            </div>
+            <pre class="mockup-terminal-code"><code><span class="code-comment">// Ingesting ESP32 payload stream</span>
+[MQTT] broker.zerobug.io:1883 connected
+<span class="code-keyword">PAYLOAD</span>: &#123; "device_id": "esp32-alpha", "temp": 24.2, "hum": 61 &#125;
+<span class="code-success">✓ Ingestion verified: 0 packet loss</span>
+<span class="code-highlight">→ Dashboard UI synced via WebSocket</span></code></pre>
+          </div>
+        </div>
+      </article>
+
+      <!-- Case Study 2: Mobile IoT Controller -->
+      <article class="project-card-strv reveal">
+        <div class="project-info">
+          <div class="project-top">
+            <span class="project-badge">Mobile Engineering</span>
+            <h3 class="project-title">Mobile IoT Device Controller</h3>
+            <p class="project-summary">Aplikasi mobile cross-platform untuk mengontrol aktuator dan memantau status perangkat keras jarak jauh dengan otentikasi biometrik aman.</p>
+          </div>
+          <div class="project-stats">
+            <div class="stat-item">
+              <p class="stat-num">Native</p>
+              <p class="stat-text">Smooth 60 FPS</p>
+            </div>
+            <div class="stat-item">
+              <p class="stat-num">Realtime</p>
+              <p class="stat-text">State Sync</p>
+            </div>
+          </div>
+          <div class="project-tags">
+            <span class="tag-pill">Flutter</span>
+            <span class="tag-pill">Android</span>
+            <span class="tag-pill">Firebase</span>
+            <span class="tag-pill">REST API</span>
+          </div>
+        </div>
+        <div class="project-visual">
+          <div class="mockup-terminal">
+            <div class="mockup-terminal-bar">
+              <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+              <span class="mockup-terminal-title">mobile-engine // flutter</span>
+            </div>
+            <pre class="mockup-terminal-code"><code><span class="code-comment">// State management &amp; biometrics</span>
+<span class="code-keyword">final</span> state = await BiometricAuth.verify();
+<span class="code-success">✓ Session authenticated (JWT stored)</span>
+<span class="code-keyword">deviceStream</span>.listen((status) =&gt; &#123;
+  DeviceWidget.renderStatus(status);
+&#125;);</code></pre>
+          </div>
+        </div>
+      </article>
+
+      <!-- Case Study 3: Enterprise Web System -->
+      <article class="project-card-strv reveal">
+        <div class="project-info">
+          <div class="project-top">
+            <span class="project-badge">Enterprise Web Platform</span>
+            <h3 class="project-title">Sistem Informasi &amp; Operasional Internal</h3>
+            <p class="project-summary">Arsitektur back-office terintegrasi dengan Role-Based Access Control (RBAC), modul inventaris, automasi pelaporan eksekutif, dan audit log.</p>
+          </div>
+          <div class="project-stats">
+            <div class="stat-item">
+              <p class="stat-num">100%</p>
+              <p class="stat-text">Audit Trail Coverage</p>
+            </div>
+            <div class="stat-item">
+              <p class="stat-num">Modular</p>
+              <p class="stat-text">Scalable Schema</p>
+            </div>
+          </div>
+          <div class="project-tags">
+            <span class="tag-pill">PHP</span>
+            <span class="tag-pill">Laravel</span>
+            <span class="tag-pill">Tailwind/Bootstrap</span>
+            <span class="tag-pill">MySQL</span>
+            <span class="tag-pill">Docker</span>
+          </div>
+        </div>
+        <div class="project-visual">
+          <div class="mockup-terminal">
+            <div class="mockup-terminal-bar">
+              <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+              <span class="mockup-terminal-title">rbac-policy // audit</span>
+            </div>
+            <pre class="mockup-terminal-code"><code><span class="code-comment">// Enterprise RBAC authorization</span>
+Gate::define('export-financial-report', function ($user) &#123;
+    return $user-&gt;hasRole('Executive');
+&#125;);
+<span class="code-success">✓ Authorization granted with secure log</span></code></pre>
+          </div>
+        </div>
+      </article>
+
+      <!-- Case Study 4: Hardware Integration -->
+      <article class="project-card-strv reveal">
+        <div class="project-info">
+          <div class="project-top">
+            <span class="project-badge">Hardware &amp; Firmware</span>
+            <h3 class="project-title">Smart Drop Point — Locker Otomatis</h3>
+            <p class="project-summary">Loker paket pintar terdesentralisasi dengan pembaca RFID, mekanisme selenoid lock otomatis, dan sinkronisasi server terpusat.</p>
+          </div>
+          <div class="project-stats">
+            <div class="stat-item">
+              <p class="stat-num">Dual-Lock</p>
+              <p class="stat-text">Hardware Security</p>
+            </div>
+            <div class="stat-item">
+              <p class="stat-num">Offline</p>
+              <p class="stat-text">Fallback Support</p>
+            </div>
+          </div>
+          <div class="project-tags">
+            <span class="tag-pill">RFID Hardware</span>
+            <span class="tag-pill">ESP32</span>
+            <span class="tag-pill">PHP Backend</span>
+            <span class="tag-pill">Relay Solenoid</span>
+          </div>
+        </div>
+        <div class="project-visual">
+          <div class="mockup-terminal">
+            <div class="mockup-terminal-bar">
+              <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+              <span class="mockup-terminal-title">firmware // rfid-trigger</span>
+            </div>
+            <pre class="mockup-terminal-code"><code><span class="code-comment">// Hardware solenoid trigger</span>
+<span class="code-keyword">if</span> (RFID.readCard() == authorizedToken) &#123;
+    relayTrigger(PIN_LOCK_01, LOW);
+    <span class="code-success">✓ Loker terbuka: Token valid</span>
+    syncCloudEvent("PACKAGE_COLLECTED");
+&#125;</code></pre>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+

@@ -3,172 +3,181 @@
 <section class="projects" id="proyek">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow">// Karya Terpilih</span>
-      <h2 class="section-title">Studi Kasus &amp; Sistem Nyata</h2>
-      <p class="section-desc">Kombinasi rekayasa perangkat lunak modern, performa tinggi, dan pengalaman pengguna yang mulus.</p>
+      <span class="eyebrow">// CONTOH KARYA KAMI</span>
+      <h2 class="section-title">Studi Kasus Proyek Nyata</h2>
+      <p class="section-desc">Beberapa contoh sistem dan aplikasi yang telah kami bangun untuk mempermudah operasional dan menyelesaikan masalah bisnis klien.</p>
     </div>
 
     <div class="projects-grid">
       
-      <!-- Case Study 1: Smart IoT -->
+      <!-- System 01: Smart IoT -->
       <article class="project-card-strv reveal">
         <div class="project-info">
-          <div class="project-top">
-            <span class="project-badge">IoT &amp; Cloud Analytics</span>
+          <div>
+            <div class="project-meta-ref">
+              <span class="project-sys-id">Alat Pintar &amp; Website</span>
+              <span class="project-status-tag">Sudah Beroperasi</span>
+            </div>
             <h3 class="project-title">Smart Monitoring Dashboard</h3>
-            <p class="project-summary">Platform telemetri IoT industri untuk pemantauan suhu, kelembaban, dan sensor multi-node secara real-time dengan latency ultra rendah.</p>
+            <p class="project-summary">Sistem pemantau suhu, kelembaban, dan sensor lingkungan otomatis. Pemilik usaha bisa melihat kondisi ruangan secara langsung (real-time) melalui layar HP atau laptop dari mana saja.</p>
           </div>
           <div class="project-stats">
             <div class="stat-item">
-              <p class="stat-num">&lt; 150ms</p>
-              <p class="stat-text">Telemetry Latency</p>
+              <p class="stat-num">&lt; 150 Milidetik</p>
+              <p class="stat-text">Respon Data Cepat</p>
             </div>
             <div class="stat-item">
               <p class="stat-num">99.9%</p>
-              <p class="stat-text">Hardware Uptime</p>
+              <p class="stat-text">Alat Bekerja Stabil</p>
             </div>
           </div>
           <div class="project-tags">
-            <span class="tag-pill">ESP32</span>
-            <span class="tag-pill">MQTT</span>
-            <span class="tag-pill">Laravel</span>
-            <span class="tag-pill">MySQL</span>
-            <span class="tag-pill">WebSockets</span>
+            <span class="tag-pill">Sensor ESP32</span>
+            <span class="tag-pill">Koneksi Otomatis</span>
+            <span class="tag-pill">Dashboard Website</span>
+            <span class="tag-pill">Database Aman</span>
           </div>
         </div>
         <div class="project-visual">
           <div class="mockup-terminal">
             <div class="mockup-terminal-bar">
-              <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
-              <span class="mockup-terminal-title">node-sensor-feed // stream</span>
+              <span class="mockup-terminal-title">Status Data Real-Time</span>
+              <span class="mockup-terminal-indicator"></span>
             </div>
-            <pre class="mockup-terminal-code"><code><span class="code-comment">// Ingesting ESP32 payload stream</span>
-[MQTT] broker.zerobug.io:1883 connected
-<span class="code-keyword">PAYLOAD</span>: &#123; "device_id": "esp32-alpha", "temp": 24.2, "hum": 61 &#125;
-<span class="code-success">✓ Ingestion verified: 0 packet loss</span>
-<span class="code-highlight">→ Dashboard UI synced via WebSocket</span></code></pre>
+            <pre class="mockup-terminal-code"><code><span class="code-comment">// Menerima data sensor ruangan otomatis</span>
+[STATUS] Sensor ruang utama terhubung normal
+<span class="code-keyword">DATA_TERBARU</span>: &#123; "suhu": 24.2°C, "kelembaban": 61% &#125;
+<span class="code-success">[SUKSES] Data terkirim aman tanpa gangguan</span>
+<span class="code-highlight">[TAMPILAN] Layar otomatis terupdate</span></code></pre>
           </div>
         </div>
       </article>
 
-      <!-- Case Study 2: Mobile IoT Controller -->
+      <!-- System 02: Mobile IoT Controller -->
       <article class="project-card-strv reveal">
         <div class="project-info">
-          <div class="project-top">
-            <span class="project-badge">Mobile Engineering</span>
-            <h3 class="project-title">Mobile IoT Device Controller</h3>
-            <p class="project-summary">Aplikasi mobile cross-platform untuk mengontrol aktuator dan memantau status perangkat keras jarak jauh dengan otentikasi biometrik aman.</p>
+          <div>
+            <div class="project-meta-ref">
+              <span class="project-sys-id">Aplikasi Handphone</span>
+              <span class="project-status-tag">Respon Instan</span>
+            </div>
+            <h3 class="project-title">Aplikasi Pengendali Alat dari HP</h3>
+            <p class="project-summary">Aplikasi mobile di ponsel pintar untuk menyalakan, mematikan, dan memantau status alat elektronik dari jarak jauh. Dilengkapi keamanan sidik jari agar hanya Anda yang bisa mengontrolnya.</p>
           </div>
           <div class="project-stats">
             <div class="stat-item">
-              <p class="stat-num">Native</p>
-              <p class="stat-text">Smooth 60 FPS</p>
+              <p class="stat-num">Sangat Ringan</p>
+              <p class="stat-text">Responsif di Semua Tipe HP</p>
             </div>
             <div class="stat-item">
-              <p class="stat-num">Realtime</p>
-              <p class="stat-text">State Sync</p>
+              <p class="stat-num">Langsung</p>
+              <p class="stat-text">Perintah Detik Itu Juga</p>
             </div>
           </div>
           <div class="project-tags">
-            <span class="tag-pill">Flutter</span>
-            <span class="tag-pill">Android</span>
-            <span class="tag-pill">Firebase</span>
-            <span class="tag-pill">REST API</span>
+            <span class="tag-pill">Flutter (Android &amp; iOS)</span>
+            <span class="tag-pill">Login Sidik Jari</span>
+            <span class="tag-pill">Database Realtime</span>
+            <span class="tag-pill">Kendali Jarak Jauh</span>
           </div>
         </div>
         <div class="project-visual">
           <div class="mockup-terminal">
             <div class="mockup-terminal-bar">
-              <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
-              <span class="mockup-terminal-title">mobile-engine // flutter</span>
+              <span class="mockup-terminal-title">Pengiriman Perintah HP</span>
+              <span class="mockup-terminal-indicator"></span>
             </div>
-            <pre class="mockup-terminal-code"><code><span class="code-comment">// State management &amp; biometrics</span>
-<span class="code-keyword">final</span> state = await BiometricAuth.verify();
-<span class="code-success">✓ Session authenticated (JWT stored)</span>
-<span class="code-keyword">deviceStream</span>.listen((status) =&gt; &#123;
-  DeviceWidget.renderStatus(status);
-&#125;);</code></pre>
+            <pre class="mockup-terminal-code"><code><span class="code-comment">// Mengirim instruksi dari tombol di layar HP</span>
+<span class="code-keyword">final</span> verifikasi = await KunciSidikJari.buka();
+<span class="code-success">[BERHASIL] Sidik jari pemilik cocok</span>
+<span class="code-keyword">alat</span>.kirimPerintah("NYALAKAN_SAKLAR");
+<span class="code-highlight">[STATUS] Alat di lokasi langsung aktif</span></code></pre>
           </div>
         </div>
       </article>
 
-      <!-- Case Study 3: Enterprise Web System -->
+      <!-- System 03: Enterprise Web System -->
       <article class="project-card-strv reveal">
         <div class="project-info">
-          <div class="project-top">
-            <span class="project-badge">Enterprise Web Platform</span>
-            <h3 class="project-title">Sistem Informasi &amp; Operasional Internal</h3>
-            <p class="project-summary">Arsitektur back-office terintegrasi dengan Role-Based Access Control (RBAC), modul inventaris, automasi pelaporan eksekutif, dan audit log.</p>
+          <div>
+            <div class="project-meta-ref">
+              <span class="project-sys-id">Sistem Informasi Kantor</span>
+              <span class="project-status-tag">Data Tertib</span>
+            </div>
+            <h3 class="project-title">Sistem Manajemen Internal Perusahaan</h3>
+            <p class="project-summary">Website khusus untuk mengelola data operasional kantor: pencatatan stok barang, pembagian hak akses karyawan sesuai jabatan (staf, manajer, direktur), dan rekap laporan bulanan otomatis.</p>
           </div>
           <div class="project-stats">
             <div class="stat-item">
-              <p class="stat-num">100%</p>
-              <p class="stat-text">Audit Trail Coverage</p>
+              <p class="stat-num">100% Aman</p>
+              <p class="stat-text">Semua Aktivitas Tercatat Rapi</p>
             </div>
             <div class="stat-item">
-              <p class="stat-num">Modular</p>
-              <p class="stat-text">Scalable Schema</p>
+              <p class="stat-num">Otomatis</p>
+              <p class="stat-text">Cetak Laporan Sekali Klik</p>
             </div>
           </div>
           <div class="project-tags">
-            <span class="tag-pill">PHP</span>
-            <span class="tag-pill">Laravel</span>
-            <span class="tag-pill">Tailwind/Bootstrap</span>
-            <span class="tag-pill">MySQL</span>
-            <span class="tag-pill">Docker</span>
+            <span class="tag-pill">Laravel PHP</span>
+            <span class="tag-pill">Hak Akses Karyawan</span>
+            <span class="tag-pill">Database MySQL</span>
+            <span class="tag-pill">Laporan Otomatis</span>
           </div>
         </div>
         <div class="project-visual">
           <div class="mockup-terminal">
             <div class="mockup-terminal-bar">
-              <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
-              <span class="mockup-terminal-title">rbac-policy // audit</span>
+              <span class="mockup-terminal-title">Pengaturan Hak Akses</span>
+              <span class="mockup-terminal-indicator"></span>
             </div>
-            <pre class="mockup-terminal-code"><code><span class="code-comment">// Enterprise RBAC authorization</span>
-Gate::define('export-financial-report', function ($user) &#123;
-    return $user-&gt;hasRole('Executive');
+            <pre class="mockup-terminal-code"><code><span class="code-comment">// Memeriksa izin buka laporan keuangan</span>
+IzinAkses::atur('buka-laporan-keuangan', function ($user) &#123;
+    return $user-&gt;jabatan == 'Manajer';
 &#125;);
-<span class="code-success">✓ Authorization granted with secure log</span></code></pre>
+<span class="code-success">[DIBERIKAN] Laporan terunduh &amp; riwayat tersimpan</span></code></pre>
           </div>
         </div>
       </article>
 
-      <!-- Case Study 4: Hardware Integration -->
+      <!-- System 04: Smart Drop Point -->
       <article class="project-card-strv reveal">
         <div class="project-info">
-          <div class="project-top">
-            <span class="project-badge">Hardware &amp; Firmware</span>
-            <h3 class="project-title">Smart Drop Point — Locker Otomatis</h3>
-            <p class="project-summary">Loker paket pintar terdesentralisasi dengan pembaca RFID, mekanisme selenoid lock otomatis, dan sinkronisasi server terpusat.</p>
+          <div>
+            <div class="project-meta-ref">
+              <span class="project-sys-id">Alat Otomasi Pintar</span>
+              <span class="project-status-tag">Kunci Elektrik</span>
+            </div>
+            <h3 class="project-title">Smart Drop Point — Loker Paket Otomatis</h3>
+            <p class="project-summary">Loker penitipan barang pintar yang pintunya terbuka otomatis hanya saat ditempelkan kartu khusus (RFID) atau kode rahasia. Sangat praktis untuk serah terima paket tanpa perlu kunci fisik manual.</p>
           </div>
           <div class="project-stats">
             <div class="stat-item">
-              <p class="stat-num">Dual-Lock</p>
-              <p class="stat-text">Hardware Security</p>
+              <p class="stat-num">Kunci Otomatis</p>
+              <p class="stat-text">Keamanan Ganda Elektronik</p>
             </div>
             <div class="stat-item">
-              <p class="stat-num">Offline</p>
-              <p class="stat-text">Fallback Support</p>
+              <p class="stat-num">Bisa Offline</p>
+              <p class="stat-text">Tetap Jalan Tanpa Internet</p>
             </div>
           </div>
           <div class="project-tags">
-            <span class="tag-pill">RFID Hardware</span>
-            <span class="tag-pill">ESP32</span>
-            <span class="tag-pill">PHP Backend</span>
-            <span class="tag-pill">Relay Solenoid</span>
+            <span class="tag-pill">Kartu RFID / E-KTP</span>
+            <span class="tag-pill">Kunci Listrik Solenoid</span>
+            <span class="tag-pill">Loker Otomatis</span>
+            <span class="tag-pill">Notifikasi Pengambilan</span>
           </div>
         </div>
         <div class="project-visual">
           <div class="mockup-terminal">
             <div class="mockup-terminal-bar">
-              <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
-              <span class="mockup-terminal-title">firmware // rfid-trigger</span>
+              <span class="mockup-terminal-title">Sensor Kartu Loker</span>
+              <span class="mockup-terminal-indicator"></span>
             </div>
-            <pre class="mockup-terminal-code"><code><span class="code-comment">// Hardware solenoid trigger</span>
-<span class="code-keyword">if</span> (RFID.readCard() == authorizedToken) &#123;
-    relayTrigger(PIN_LOCK_01, LOW);
-    <span class="code-success">✓ Loker terbuka: Token valid</span>
-    syncCloudEvent("PACKAGE_COLLECTED");
+            <pre class="mockup-terminal-code"><code><span class="code-comment">// Membaca kartu yang ditempelkan ke loker</span>
+<span class="code-keyword">jika</span> (Kartu.cocokDenganPaket) &#123;
+    bukaKunciPintu(LOKER_NOMOR_04);
+    <span class="code-success">[TERBUKA] Pintu loker nomor 04 terbuka</span>
+    kirimPemberitahuan("PAKET_TELAH_DIAMBIL");
 &#125;</code></pre>
           </div>
         </div>
@@ -177,4 +186,3 @@ Gate::define('export-financial-report', function ($user) &#123;
     </div>
   </div>
 </section>
-

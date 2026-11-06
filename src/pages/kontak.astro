@@ -1,0 +1,509 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+const emailAddress = "zerobug.team@gmail.com";
+const waNumber = "+62 812-2952-3471";
+const waLink = "https://wa.me/6281229523471";
+---
+
+<Layout 
+  title="Hubungi ZeroBug — Kontak Email & Konsultasi Proyek" 
+  description="Hubungi tim ZeroBug via email di zerobug.team@gmail.com atau WhatsApp untuk konsultasi teknis, estimasi biaya, dan perancangan website, aplikasi, atau IoT."
+>
+  <Header />
+
+  <main class="contact-page">
+    <section class="contact-hero">
+      <div class="container">
+        <div class="section-head reveal" style="text-align: center; max-width: 700px; margin: 0 auto 50px;">
+          <span class="eyebrow">// HUBUNGI KAMI VIA EMAIL</span>
+          <h1 class="section-title">Mari Bicarakan Ide &amp; Kebutuhan Sistem Anda</h1>
+          <p class="section-desc" style="margin: 0 auto;">
+            Punya rencana membuat website baru, aplikasi mobile, atau otomatisasi IoT? Kirimkan rincian kebutuhan Anda lewat email. Kami siap menganalisis solusi teknis yang tepat dan realistis.
+          </p>
+        </div>
+
+        <div class="contact-grid reveal">
+          <!-- KOLOM KIRI: JAMINAN RESPON & KANAL KONTAK -->
+          <div class="contact-info-panel">
+            <div class="trust-points-list">
+              <div class="trust-item">
+                <div class="trust-icon">
+                  <svg class="icon"><use href="#icon-mail"/></svg>
+                </div>
+                <div>
+                  <strong class="trust-title">Email Resmi Studio</strong>
+                  <p class="trust-desc">Kirim pesan langsung ke <a href={`mailto:${emailAddress}`} style="color:var(--steel-cyan);font-weight:600;text-decoration:underline;">{emailAddress}</a> atau gunakan formulir di samping.</p>
+                </div>
+              </div>
+
+              <div class="trust-item">
+                <div class="trust-icon">
+                  <svg class="icon"><use href="#icon-clock"/></svg>
+                </div>
+                <div>
+                  <strong class="trust-title">Respon di Bawah 24 Jam</strong>
+                  <p class="trust-desc">Setiap pesan masuk dibaca dan dibalas langsung oleh lead engineer kami pada hari kerja.</p>
+                </div>
+              </div>
+
+              <div class="trust-item">
+                <div class="trust-icon">
+                  <svg class="icon"><use href="#icon-check"/></svg>
+                </div>
+                <div>
+                  <strong class="trust-title">Konsultasi Awal 100% Gratis</strong>
+                  <p class="trust-desc">Diskusi pemetaan arsitektur awal, estimasi waktu, dan saran teknologi tanpa ada ikatan kontrak apa pun.</p>
+                </div>
+              </div>
+
+              <div class="trust-item">
+                <div class="trust-icon">
+                  <svg class="icon"><use href="#icon-shield-check"/></svg>
+                </div>
+                <div>
+                  <strong class="trust-title">Kerahasiaan Ide Terjamin (NDA)</strong>
+                  <p class="trust-desc">Kami siap menandatangani perjanjian kerahasiaan (*Non-Disclosure Agreement*) sebelum pembahasan mendalam dimulai.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- ALTERNATIF WHATSAPP CEPAT -->
+            <div class="alt-channel-box">
+              <div class="alt-channel-text">
+                <strong>Butuh tanggapan cepat hari ini?</strong>
+                <p>Anda juga bisa menghubungi kami langsung melalui pesan WhatsApp bisnis.</p>
+              </div>
+              <a href={waLink} target="_blank" rel="noopener" class="btn btn-secondary btn-sm alt-wa-btn">
+                <span>Chat WhatsApp</span>
+                <svg class="icon"><use href="#icon-arrow-right"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- KOLOM KANAN: FORM DRAFT EMAIL INTERAKTIF -->
+          <div class="contact-form-panel">
+            <div class="form-header">
+              <h2 class="form-title">Tulis Pesan untuk Tim Engineer</h2>
+              <p class="form-subtitle">Isi formulir di bawah ini, lalu klik tombol kirim untuk membuka draf email yang sudah tersusun rapi otomatis.</p>
+            </div>
+
+            <form id="contact-email-form" class="email-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="sender-name">Nama Anda / Perusahaan <span class="required">*</span></label>
+                  <input type="text" id="sender-name" placeholder="Misal: Budi Santoso (PT Solusi Maju)" required />
+                </div>
+                <div class="form-group">
+                  <label for="sender-email">Alamat Email Anda <span class="required">*</span></label>
+                  <input type="email" id="sender-email" placeholder="nama@perusahaan.com" required />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="project-type">Kebutuhan Proyek / Sistem</label>
+                <select id="project-type">
+                  <option value="Pembuatan Website Usaha / Toko Online">Website Usaha / Profil Perusahaan / E-Commerce</option>
+                  <option value="Aplikasi Mobile Android & iOS">Aplikasi Mobile (Android &amp; iOS)</option>
+                  <option value="Integrasi Alat Pintar IoT & Sensor">Alat Pintar IoT, Sensor &amp; Otomasi Pabrik</option>
+                  <option value="Audit, Refactor, & Perbaikan Sistem">Audit, Pembersihan Bug, atau Lanjutan Sistem Lama</option>
+                  <option value="Konsultasi Teknis & Arsitektur">Konsultasi Teknis &amp; Rekayasa Khusus</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="project-timeline">Target Waktu Penyelesaian (Opsional)</label>
+                <input type="text" id="project-timeline" placeholder="Misal: 1-2 Bulan kedepan / Secepatnya" />
+              </div>
+
+              <div class="form-group">
+                <label for="project-message">Rincian Kebutuhan atau Gambaran Ide <span class="required">*</span></label>
+                <textarea id="project-message" rows="5" placeholder="Ceritakan alur bisnis yang ingin dibuat, fitur-fitur penting yang dibutuhkan, atau kendala teknis pada sistem yang sedang dihadapi..." required></textarea>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary btn-lg submit-btn">
+                  <svg class="icon"><use href="#icon-send"/></svg>
+                  <span>Kirim Pesan via Email</span>
+                </button>
+              </div>
+
+              <p class="form-footer-note">
+                <svg class="icon" style="width:14px; height:14px;"><use href="#icon-shield-check"/></svg>
+                <span>Privasi data Anda aman. Kami tidak akan pernah membagikan email Anda ke pihak mana pun.</span>
+              </p>
+            </form>
+          </div>
+        </div>
+
+        <!-- FAQ SINGKAT KONTAK EMAIL -->
+        <div class="contact-faq-section reveal">
+          <h3 class="faq-section-title">Pertanyaan Umum Sebelum Menghubungi</h3>
+          <div class="faq-grid">
+            <div class="faq-card">
+              <h4 class="faq-q">Apa yang terjadi setelah saya mengirim email?</h4>
+              <p class="faq-a">Tim teknis kami akan membaca rincian kebutuhan Anda, menyusun estimasi awal skema sistem, dan membalas email Anda dengan opsi solusi konkret serta jadwal diskusi teknis lanjutan jika diperlukan.</p>
+            </div>
+            <div class="faq-card">
+              <h4 class="faq-q">Apakah ada biaya untuk konsultasi awal?</h4>
+              <p class="faq-a">Sama sekali tidak ada biaya. Kami menyambut baik diskusi teknis untuk memahami masalah bisnis Anda terlebih dahulu sebelum membahas penawaran pengerjaan.</p>
+            </div>
+            <div class="faq-card">
+              <h4 class="faq-q">Bagaimana jika proyek saya sudah memiliki kode berjalan?</h4>
+              <p class="faq-a">Sangat bisa. Kami berpengalaman melakukan *code audit*, refactoring kode yang berantakan, serta melanjutkan sistem yang ditinggalkan developer sebelumnya agar siap kembali ke produksi.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script is:inline>
+  // Interaksi Pengiriman Form Email
+  const contactForm = document.getElementById('contact-email-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById('sender-name').value.trim();
+      const email = document.getElementById('sender-email').value.trim();
+      const type = document.getElementById('project-type').value;
+      const timeline = document.getElementById('project-timeline').value.trim();
+      const message = document.getElementById('project-message').value.trim();
+
+      const subject = encodeURIComponent(`[Inisiasi Proyek] ${type} - ${name}`);
+      const bodyLines = [
+        `Halo ZeroBug Team,`,
+        ``,
+        `Saya ingin mendiskusikan kebutuhan sistem/proyek baru dengan rincian berikut:`,
+        ``,
+        `• Nama / Perusahaan : ${name}`,
+        `• Email Kontak       : ${email}`,
+        `• Jenis Kebutuhan    : ${type}`,
+        `• Target Waktu       : ${timeline || 'Fleksibel / Sesuai saran teknis'}`,
+        ``,
+        `Rincian Kebutuhan / Ide:`,
+        `${message}`,
+        ``,
+        `---`,
+        `Pesan ini dibuat melalui formulir kontak resmi di portofolio ZeroBug.`
+      ];
+
+      const body = encodeURIComponent(bodyLines.join('\n'));
+      const mailtoUrl = `mailto:zerobug.team@gmail.com?subject=${subject}&body=${body}`;
+
+      // Buka aplikasi email pengguna
+      window.location.href = mailtoUrl;
+    });
+  }
+</script>
+
+<style>
+  .contact-page {
+    padding-top: 20px;
+    padding-bottom: 60px;
+  }
+
+  .contact-hero {
+    padding: 60px 0 20px;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.35fr;
+    gap: 40px;
+    align-items: start;
+    margin-bottom: 70px;
+  }
+
+  /* Info Panel Kiri */
+  .contact-info-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .official-email-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    box-shadow: 0 4px 24px rgba(36, 122, 155, 0.05);
+    position: relative;
+  }
+
+  .official-email-box::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 28px;
+    width: 60px;
+    height: 3px;
+    background: var(--steel-cyan);
+    border-radius: var(--radius-pill);
+  }
+
+  .email-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--steel-cyan);
+    background: var(--cyan-tint);
+    padding: 4px 12px;
+    border-radius: var(--radius-pill);
+    margin-bottom: 16px;
+  }
+
+  .email-display {
+    margin-bottom: 22px;
+  }
+
+  .email-text {
+    font-family: var(--font-heading);
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--ink);
+    word-break: break-all;
+    letter-spacing: -0.01em;
+  }
+
+  .email-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* Trust Points List */
+  .trust-points-list {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .trust-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .trust-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--cyan-tint);
+    color: var(--steel-cyan);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .trust-title {
+    display: block;
+    font-size: 0.95rem;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .trust-desc {
+    font-size: 0.85rem;
+    color: var(--ink-secondary);
+    line-height: 1.55;
+  }
+
+  /* Alt Channel WhatsApp */
+  .alt-channel-box {
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .alt-channel-text strong {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+
+  .alt-channel-text p {
+    font-size: 0.8rem;
+    color: var(--ink-secondary);
+  }
+
+  .alt-wa-btn {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* Form Panel Kanan */
+  .contact-form-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    box-shadow: 0 4px 24px rgba(36, 122, 155, 0.05);
+  }
+
+  .form-header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 18px;
+    margin-bottom: 26px;
+  }
+
+  .form-title {
+    font-size: 1.35rem;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .form-subtitle {
+    font-size: 0.9rem;
+    color: var(--ink-secondary);
+    line-height: 1.55;
+  }
+
+  .email-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .form-group label {
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .required {
+    color: #C0392B;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface-elevated);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    transition: all .2s ease;
+    box-sizing: border-box;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--steel-cyan);
+    box-shadow: 0 0 0 3px var(--cyan-glow);
+    background: #FFFFFF;
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 110px;
+  }
+
+  .form-actions {
+    margin-top: 8px;
+  }
+
+  .submit-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 24px;
+    font-size: 0.98rem;
+  }
+
+  .form-footer-note {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    color: var(--ink-muted);
+    line-height: 1.4;
+    margin-top: 8px;
+  }
+
+  /* FAQ Section */
+  .contact-faq-section {
+    border-top: 1px solid var(--border);
+    padding-top: 50px;
+  }
+
+  .faq-section-title {
+    font-size: 1.25rem;
+    color: var(--ink);
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .faq-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    box-shadow: 0 2px 12px rgba(36, 122, 155, 0.03);
+  }
+
+  .faq-q {
+    font-size: 0.98rem;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+
+  .faq-a {
+    font-size: 0.86rem;
+    color: var(--ink-secondary);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 960px) {
+    .contact-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .faq-grid { grid-template-columns: 1fr; }
+    .alt-channel-box { flex-direction: column; align-items: flex-start; }
+    .alt-wa-btn { width: 100%; justify-content: center; }
+  }
+</style>
+

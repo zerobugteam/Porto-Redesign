@@ -1,0 +1,1 @@
+terlalu banyak card disini, selain pakai card pakai apa gitu lo 

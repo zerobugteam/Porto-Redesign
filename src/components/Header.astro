@@ -1,18 +1,18 @@
 ---
+const currentPath = Astro.url.pathname;
 ---
-<header class="site-header" id="top">
+<header class="site-header" id="top" transition:persist="header">
   <div class="container header-inner">
-    <a href="#top" class="brand" aria-label="ZeroBug Team Home">
-      <img src="/logo.png" alt="ZeroBug Logo" class="brand-logo-img" />
+    <a href="/" class="brand" aria-label="ZeroBug Team Home">
+      <img src="/logotrans.png" alt="ZeroBug Logo" class="brand-logo-img" />
       <span class="brand-name">Zero<span>Bug</span></span>
     </a>
 
     <nav class="main-nav" id="main-nav">
-      <a href="#proyek">Proyek</a>
-      <a href="#layanan">Kapabilitas</a>
-      <a href="#teknologi">Teknologi</a>
-      <a href="#proses">Metodologi</a>
-      <a href="#filosofi">Keunggulan</a>
+      <a href="/proyek" class={currentPath === '/proyek' || currentPath === '/proyek/' ? 'active' : ''}>Proyek</a>
+      <a href="/kapabilitas" class={currentPath === '/kapabilitas' || currentPath === '/kapabilitas/' ? 'active' : ''}>Layanan</a>
+      <a href="/tentang" class={currentPath === '/tentang' || currentPath === '/tentang/' ? 'active' : ''}>Tentang</a>
+      <a href="/kontak" class={currentPath === '/kontak' || currentPath === '/kontak/' ? 'active' : ''}>Kontak</a>
     </nav>
 
     <div class="header-actions">
@@ -21,7 +21,7 @@
         <svg class="icon icon-show-dark" aria-hidden="true"><use href="#icon-theme"/></svg>
       </button>
       <a class="btn btn-primary btn-sm nav-cta-btn" href="https://wa.me/6281229523471" target="_blank" rel="noopener">
-        <span>Mulai Diskusi</span>
+        <span>Konsultasi Proyek</span>
         <svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"/></svg>
       </a>
       <button class="icon-btn nav-toggle" id="nav-toggle" aria-label="Buka menu navigasi" aria-expanded="false" type="button">
@@ -32,3 +32,20 @@
   </div>
 </header>
 
+<script is:inline>
+  // Pembaruan status menu aktif secara instan saat transisi halaman persist
+  document.addEventListener('astro:page-load', function () {
+    var path = window.location.pathname.replace(/\/$/, '') || '/';
+    var navLinks = document.querySelectorAll('#main-nav a');
+    navLinks.forEach(function (link) {
+      var href = link.getAttribute('href').replace(/\/$/, '') || '/';
+      if (href === '/' && path === '/') {
+        link.classList.add('active');
+      } else if (href !== '/' && (path === href || path.startsWith(href + '/'))) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  });
+</script>

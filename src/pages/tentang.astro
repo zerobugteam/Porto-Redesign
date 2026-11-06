@@ -1,0 +1,951 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+// Data Alat Kerja Mendalam (Spesifikasi Teknis & Manfaat untuk Klien)
+const detailedTools = [
+  {
+    category: "Backend & Engine API",
+    description: "Fondasi logika server yang mengelola data, otentikasi aman, dan pengolahan transaksi bisnis.",
+    items: [
+      {
+        name: "Laravel 11 & PHP 8.2+",
+        role: "Enterprise Web Core & API Engine",
+        why: "Arsitektur stabil kelas dunia dengan sistem antrian job background otomatis, ORM Eloquent yang aman dari SQL Injection, dan dokumentasi ekosistem terlengkap.",
+        benefit: "Sistem bisnis Anda mudah dirawat jangka panjang dan tidak bergantung pada developer perorangan.",
+        badge: "Backend Utama"
+      },
+      {
+        name: "Express.js & Node.js",
+        role: "Microservices & Real-Time Gateway",
+        why: "Berbasis event-driven non-blocking I/O dengan latensi sub-milidetik, sangat efisien untuk menangani ribuan koneksi bersamaan.",
+        benefit: "Chatting, sinkronisasi data langsung, dan streaming event sensor berjalan instan tanpa lag.",
+        badge: "Real-Time Engine"
+      },
+      {
+        name: "Python Automation",
+        role: "Otomasi Data & Log Processing",
+        why: "Bahasa standar industri untuk analitik data, automasi skrip periodik, dan integrasi kecerdasan buatan (AI/ML).",
+        benefit: "Laporan harian otomatis terkirim rapi dan beban kerja manual tim operasional berkurang drastis.",
+        badge: "Automasi"
+      }
+    ]
+  },
+  {
+    category: "Basis Data & Cache Berkecepatan Tinggi",
+    description: "Tempat penyimpanan data yang terproteksi ketat, terindeks cepat, dan tahan lonjakan trafik.",
+    items: [
+      {
+        name: "PostgreSQL",
+        role: "Relational Enterprise Database",
+        why: "Kepatuhan penuh ACID, dukungan tipe data JSONB fleksibel, dan integritas transaksi finansial yang tak tertandingi.",
+        benefit: "Data keuangan, stok, dan riwayat penting Anda terjamin 100% konsisten dan tidak pernah korup.",
+        badge: "Data Kritis"
+      },
+      {
+        name: "MySQL Enterprise",
+        role: "High-Throughput Relational Storage",
+        why: "Dukungan indexing komprehensif, replikasi cepat, dan standar industri paling populer di server hosting.",
+        benefit: "Biaya server lebih efisien dan kompatibel dengan hampir semua penyedia infrastruktur di dunia.",
+        badge: "Standar Industri"
+      },
+      {
+        name: "Redis In-Memory Cache",
+        role: "Sub-Millisecond Data Accelerator",
+        why: "Menyimpan data populer dan sesi pengguna langsung di memori RAM sehingga tidak membebani database utama.",
+        benefit: "Aplikasi tetap membuka halaman dalam sekejap mata meski sedang diakses ribuan pengguna bersamaan.",
+        badge: "Akselerator"
+      },
+      {
+        name: "Supabase & Firebase",
+        role: "Modern Cloud State & Live Sync",
+        why: "Fitur otentikasi instan, storage file terintegrasi, dan notifikasi push langsung ke perangkat pengguna.",
+        benefit: "Waktu pengembangan fitur notifikasi dan login aplikasi mobile menjadi 3x lebih cepat.",
+        badge: "Cloud Sync"
+      }
+    ]
+  },
+  {
+    category: "Aplikasi Mobile & Antarmuka Web",
+    description: "Tampilan visual yang responsif, nyaman di mata, dan berkinerja mulus 60/120 FPS di setiap gadget.",
+    items: [
+      {
+        name: "Flutter & Dart",
+        role: "Cross-Platform Android & iOS",
+        why: "Kompilasi ke kode mesin asli (ARM) dengan render engine Impeller untuk transisi layar super mulus.",
+        benefit: "Satu kali biaya pembuatan langsung menghasilkan aplikasi untuk pengguna Android dan iPhone sekaligus.",
+        badge: "Mobile Utama"
+      },
+      {
+        name: "Kotlin & Android Native",
+        role: "Deep Hardware & Background Service",
+        why: "Akses penuh ke API internal Android seperti Bluetooth Low Energy, GPS background, dan driver cetak thermal.",
+        benefit: "Aplikasi POS kasir atau pelacakan GPS lapangan dapat berjalan stabil di latar belakang tanpa terhenti sistem.",
+        badge: "Hardware Level"
+      },
+      {
+        name: "Astro Framework",
+        role: "Modern High-Performance Web Architecture",
+        why: "Menggunakan konsep Island Architecture tanpa JavaScript berlebih, menghasilkan nilai Google PageSpeed 98-100.",
+        benefit: "Website Anda langsung berada di posisi atas SEO Google dan memuat cepat bahkan dengan sinyal HP lemah.",
+        badge: "Ultra Fast Web"
+      },
+      {
+        name: "Tailwind CSS Design System",
+        role: "Utility-First Responsive UI",
+        why: "Menghasilkan kode CSS terkompresi ekstra mini dengan sistem skala warna, tipografi, dan padding yang presisi.",
+        benefit: "Tampilan website terlihat mewah, elegan, dan rapi di semua ukuran layar dari HP kecil hingga monitor 4K.",
+        badge: "Design System"
+      }
+    ]
+  },
+  {
+    category: "Hardware Pintar IoT & Infrastruktur Cloud",
+    description: "Integrasi fisik dengan mikrokontroler sensor dan jaringan server anti-tumbang.",
+    items: [
+      {
+        name: "ESP32 SoC & Embedded C++",
+        role: "Smart Controller & Sensor Node",
+        why: "Chip mikrokontroler dual-core 240MHz hemat daya dengan modul radio Wi-Fi & Bluetooth 5 terintegrasi.",
+        benefit: "Memungkinkan alat pabrik, pintu otomatis, atau tangki cairan terhubung ke internet dengan biaya terjangkau.",
+        badge: "Hardware IoT"
+      },
+      {
+        name: "MQTT & WebSockets Protocol",
+        role: "Lightweight Telemetry Stream",
+        why: "Protokol pengiriman data sensor dengan header hanya 2 byte, dirancang khusus untuk kondisi jaringan minim.",
+        benefit: "Alat IoT Anda tetap dapat mengirim status data secara stabil meski menggunakan paket data seluler hemat.",
+        badge: "Protokol IoT"
+      },
+      {
+        name: "Docker Containerization",
+        role: "Isolated Deployment Environment",
+        why: "Membungkus kode program beserta seluruh dependensinya ke dalam satu kontainer independen yang terisolasi.",
+        benefit: "Aplikasi dijamin berjalan sama persis di komputer pengembang dan di server produksi tanpa error aneh.",
+        badge: "DevOps"
+      },
+      {
+        name: "Cloudflare Edge Security",
+        role: "Global CDN, DDoS Shield & SSL",
+        why: "Jaringan edge di 300+ kota dunia dengan proteksi serangan DDoS otomatis dan enkripsi HTTPS mutakhir.",
+        benefit: "Website Anda aman dari serangan hacker/bot jahat dan langsung dapat diakses cepat dari wilayah mana pun.",
+        badge: "Keamanan"
+      }
+    ]
+  }
+];
+
+// 4 Langkah Cara Kerja
+const workSteps = [
+  {
+    number: "01",
+    title: "Konsultasi & Perancangan Arsitektur",
+    desc: "Kami membedah kebutuhan nyata bisnis Anda, memetakan alur fitur, merancang skema basis data, dan menyusun spesifikasi teknis yang jelas tanpa bahasa yang membingungkan.",
+    output: "Rencana arsitektur, estimasi waktu transparan, dan batasan lingkup kerja pasti."
+  },
+  {
+    number: "02",
+    title: "Pengembangan Berbasis Sprint & Demo Rutin",
+    desc: "Kode dibangun secara modular per tahap. Kami memberikan pembaruan dan tautan demo langsung secara berkala, sehingga Anda dapat mencoba dan memverifikasi modul sebelum tahap berikutnya dimulai.",
+    output: "Aplikasi nyata yang dapat diuji coba langsung oleh tim Anda di setiap fase."
+  },
+  {
+    number: "03",
+    title: "Uji Ketahanan Beban & Audit Keamanan",
+    desc: "Sebelum rilis, sistem diuji melewati simulasi beban banyak pengguna, pengujian kegagalan koneksi internet, validasi sanitasi form, dan audit otentikasi data agar zero-error saat online.",
+    output: "Laporan verifikasi kualitas sistem, nihil bug kritis, dan siap menampung pengguna nyata."
+  },
+  {
+    number: "04",
+    title: "Peluncuran & Penyerahan 100% Hak Cipta",
+    desc: "Pemasangan ke server produksi Anda, konfigurasi domain, serta penyerahan total seluruh source code di Git, akun layanan, dan panduan dokumentasi lengkap tanpa ketergantungan sepihak.",
+    output: "100% source code milik Anda, tanpa biaya royalti tersembunyi, plus masa pendampingan operasional."
+  }
+];
+
+// Prinsip Kerja / Standar ZeroBug
+const corePrinciples = [
+  {
+    title: "100% Hak Milik Klien (Tanpa Lock-in)",
+    desc: "Semua hasil kerja — mulai dari source code, repositori Git, skema database, aset desain, hingga akun server — adalah 100% milik Anda. Kami tidak pernah menahan kode atau mengunci sistem Anda.",
+    tag: "Kepemilikan Mutlak"
+  },
+  {
+    title: "Clean Code & Dokumentasi Terstruktur",
+    desc: "Setiap baris kode ditulis rapi, modular, dan mengikuti standar arsitektur industri. Jika di masa depan Anda ingin merekrut programmer internal, mereka dapat melanjutkan sistem dengan sangat mudah.",
+    tag: "Investasi Jangka Panjang"
+  },
+  {
+    title: "Keamanan & Validasi Ketat",
+    desc: "Kami menerapkan proteksi password terenkripsi modern, token session aman, sanitasi input dari serangan hacker (XSS, SQL Injection, CSRF), dan audit permission hak akses per pengguna.",
+    tag: "Proteksi Data"
+  },
+  {
+    title: "Garansi & Pemantauan Pasca Peluncuran",
+    desc: "Hubungan kerja tidak terputus saat sistem diluncurkan. Kami menyediakan masa garansi perbaikan bug dan pendampingan teknis gratis untuk menjamin bisnis Anda beroperasi tanpa kendala.",
+    tag: "Jaminan Ketenangan"
+  }
+];
+---
+
+<Layout 
+  title="Tentang ZeroBug — Profil, Prinsip & Alat Kerja Detail" 
+  description="Mengenal ZeroBug Team: studio rekayasa perangkat lunak independen, prinsip kerja teruji, spesifikasi alat kerja mendalam, dan alur pengerjaan transparan."
+>
+  <Header />
+
+  <main class="about-page">
+    <!-- SUB-NAV / QUICK JUMPS -->
+    <nav class="about-subnav" aria-label="Navigasi Halaman Tentang">
+      <div class="container about-subnav-inner">
+        <a href="#profil" class="subnav-pill">
+          <svg class="icon"><use href="#icon-layers"/></svg>
+          <span>Profil ZeroBug</span>
+        </a>
+        <a href="#prinsip" class="subnav-pill">
+          <svg class="icon"><use href="#icon-check"/></svg>
+          <span>Prinsip Kerja</span>
+        </a>
+        <a href="#alat-kerja" class="subnav-pill">
+          <svg class="icon"><use href="#icon-code"/></svg>
+          <span>Alat Kerja Detail</span>
+        </a>
+        <a href="#cara-kerja" class="subnav-pill">
+          <svg class="icon"><use href="#icon-arrow-right"/></svg>
+          <span>Cara Kerja</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- SECTION 1: PROFIL ZEROBUG -->
+    <section class="about-section" id="profil">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">// PROFIL ZEROBUG TEAM</span>
+          <h1 class="section-title">Membangun Sistem &amp; Produk Digital yang Siap Diandalkan</h1>
+          <p class="section-desc">
+            ZeroBug Team adalah studio rekayasa perangkat lunak (*software engineering*) independen yang berfokus merancang Website Performa Tinggi, Aplikasi Mobile, dan Integrasi Alat Pintar (IoT).
+          </p>
+        </div>
+
+        <div class="about-story-grid reveal">
+          <div class="about-story-card">
+            <div class="story-badge">
+              <svg class="icon"><use href="#icon-sparkles"/></svg>
+              <span>Cerita &amp; Visi Kami</span>
+            </div>
+            <h2 class="story-heading">Dibuat untuk Menyelesaikan Masalah Nyata, Bukan Sekadar Menulis Kode</h2>
+            <p class="story-text">
+              Banyak bisnis mengeluhkan sistem yang baru dibuat beberapa bulan tapi sudah lambat, aplikasi sering *crash*, atau pengembang sebelumnya menghilang saat sistem bermasalah.
+            </p>
+            <p class="story-text">
+              ZeroBug didirikan dengan komitmen sederhana: <strong>menjadi mitra teknis terpercaya</strong>. Kami memperlakukan sistem klien seperti sistem kami sendiri — mengutamakan kecepatan akses, keamanan data, dan struktur kode yang mudah dikembangkan di masa depan.
+            </p>
+
+            <div class="story-metrics">
+              <div class="story-metric-item">
+                <span class="metric-val">100%</span>
+                <span class="metric-lbl">Kepemilikan Source Code</span>
+              </div>
+              <div class="story-metric-item">
+                <span class="metric-val">0%</span>
+                <span class="metric-lbl">Vendor Lock-in</span>
+              </div>
+              <div class="story-metric-item">
+                <span class="metric-val">&lt; 1s</span>
+                <span class="metric-lbl">Standar Waktu Muat Web</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-commitment-card">
+            <h3 class="commitment-title">3 Komitmen Utama Kami untuk Anda</h3>
+            <ul class="commitment-list">
+              <li>
+                <div class="commitment-bullet">
+                  <svg class="icon"><use href="#icon-check"/></svg>
+                </div>
+                <div>
+                  <strong>Bahasa yang Mudah Dipahami</strong>
+                  <p>Kami tidak menggunakan istilah teknis yang sengaja dibikin rumit. Setiap keputusan arsitektur dijelaskan dengan alasan bisnis yang masuk akal.</p>
+                </div>
+              </li>
+              <li>
+                <div class="commitment-bullet">
+                  <svg class="icon"><use href="#icon-check"/></svg>
+                </div>
+                <div>
+                  <strong>Tanpa Biaya Tersembunyi</strong>
+                  <p>Rincian kebutuhan server, lisensi, dan pengerjaan dipaparkan secara transparan sejak hari pertama tanpa ada tagihan tiba-tiba di akhir.</p>
+                </div>
+              </li>
+              <li>
+                <div class="commitment-bullet">
+                  <svg class="icon"><use href="#icon-check"/></svg>
+                </div>
+                <div>
+                  <strong>Langsung Dikerjakan Tim Inti</strong>
+                  <p>Proyek Anda tidak dioper ke pihak ketiga atau pekerja lepas yang tidak terverifikasi. Kami menjamin kendali mutu penuh di setiap commit kode.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: PRINSIP KERJA -->
+    <section class="about-section bg-subtle" id="prinsip">
+      <div class="container">
+        <div class="section-head reveal" style="text-align: center; max-width: 720px; margin: 0 auto 46px;">
+          <span class="eyebrow">// STANDAR REKAYASA &amp; ETIKA</span>
+          <h2 class="section-title">Prinsip Kerja yang Menjadi Pegangan Kami</h2>
+          <p class="section-desc" style="margin: 0 auto;">
+            Empat standar fundamental yang kami terapkan di setiap baris program untuk memastikan investasi software Anda aman dan berkelanjutan.
+          </p>
+        </div>
+
+        <div class="principles-grid reveal">
+          {corePrinciples.map((p, idx) => (
+            <div class="principle-card">
+              <div class="principle-head">
+                <span class="principle-num">0{idx + 1}</span>
+                <span class="principle-tag">{p.tag}</span>
+              </div>
+              <h3 class="principle-title">{p.title}</h3>
+              <p class="principle-desc">{p.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <!-- Tabel Perbandingan Komitmen -->
+        <div class="comparison-card reveal">
+          <h3 class="comparison-heading">Mengapa Klien Memilih Standar ZeroBug?</h3>
+          <div class="comparison-table-wrapper">
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th>Aspek Pekerjaan</th>
+                  <th>Masalah yang Sering Terjadi di Luar</th>
+                  <th>Standar Pasti ZeroBug Team</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Hak Cipta &amp; Source Code</strong></td>
+                  <td class="text-risk">Source code ditahan, dikenakan sewa bulanan, atau kode dienkripsi.</td>
+                  <td class="text-safe">100% repositori Git, kunci API, dan dokumen diserahkan penuh ke Anda.</td>
+                </tr>
+                <tr>
+                  <td><strong>Kualitas Kode Program</strong></td>
+                  <td class="text-risk">Banyak kode copy-paste tidak terstruktur, sulit diubah dan rawan bug.</td>
+                  <td class="text-safe">Kode rapi, modular, teruji otomatis, dan siap dipelajari developer lain.</td>
+                </tr>
+                <tr>
+                  <td><strong>Kecepatan Sistem</strong></td>
+                  <td class="text-risk">Website berat dan lambat dibuka karena template terlalu banyak plugin.</td>
+                  <td class="text-safe">Dioptimasi hingga waktu muat di bawah 1 detik, ringan dan hemat kuota.</td>
+                </tr>
+                <tr>
+                  <td><strong>Pendampingan Pasca Rilis</strong></td>
+                  <td class="text-risk">Setelah pelunasan langsung menghilang atau respon lambat saat ada kendala.</td>
+                  <td class="text-safe">Tersedia garansi pemantauan bug dan grup WhatsApp langsung untuk respon cepat.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: ALAT KERJA LEBIH DETAIL -->
+    <section class="about-section" id="alat-kerja">
+      <div class="container">
+        <div class="section-head reveal" style="text-align: center; max-width: 740px; margin: 0 auto 50px;">
+          <span class="eyebrow">// ALAT &amp; KERANGKA KERJA MENDALAM</span>
+          <h2 class="section-title">Alat Kerja Kami Beserta Alasan Pemilihannya</h2>
+          <p class="section-desc" style="margin: 0 auto;">
+            Kami tidak memilih teknologi hanya karena sedang tren di media sosial. Setiap alat di bawah ini dipilih karena rekam jejaknya yang terbukti cepat, aman, dan stabil di dunia industri nyata.
+          </p>
+        </div>
+
+        <div class="tools-detailed-container reveal">
+          {detailedTools.map((cat) => (
+            <div class="tool-category-block">
+              <div class="category-header">
+                <h3 class="category-title">{cat.category}</h3>
+                <p class="category-desc">{cat.description}</p>
+              </div>
+
+              <div class="tools-item-grid">
+                {cat.items.map((tool) => (
+                  <div class="tool-detail-card">
+                    <div class="tool-card-top">
+                      <div>
+                        <h4 class="tool-name">{tool.name}</h4>
+                        <span class="tool-role">{tool.role}</span>
+                      </div>
+                      <span class="tool-badge">{tool.badge}</span>
+                    </div>
+
+                    <div class="tool-card-body">
+                      <div class="tool-point">
+                        <strong class="point-label">Mengapa Kami Memilih Alat Ini:</strong>
+                        <p class="point-desc">{tool.why}</p>
+                      </div>
+                      <div class="tool-point point-benefit">
+                        <strong class="point-label">Manfaat Langsung untuk Anda:</strong>
+                        <p class="point-desc">{tool.benefit}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: CARA KERJA -->
+    <section class="about-section bg-subtle" id="cara-kerja">
+      <div class="container">
+        <div class="section-head reveal" style="text-align: center; max-width: 720px; margin: 0 auto 46px;">
+          <span class="eyebrow">// ALUR PENGERJAAN PROYEK</span>
+          <h2 class="section-title">Cara Kerja Kami: Dari Diskusi Hingga Siap Pakai</h2>
+          <p class="section-desc" style="margin: 0 auto;">
+            Empat tahapan kerja terukur yang dirancang agar pengerjaan selesai tepat waktu, tidak keluar dari anggaran, dan hasilnya sesuai dengan ekspektasi bisnis Anda.
+          </p>
+        </div>
+
+        <div class="worksteps-grid reveal">
+          {workSteps.map((step) => (
+            <div class="workstep-card">
+              <div class="workstep-num-badge">{step.number}</div>
+              <h3 class="workstep-title">{step.title}</h3>
+              <p class="workstep-desc">{step.desc}</p>
+              <div class="workstep-output">
+                <span class="output-label">Hasil Tahap Ini:</span>
+                <span class="output-text">{step.output}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: CTA BANNER -->
+    <CtaBanner />
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .about-page {
+    padding-top: 10px;
+    padding-bottom: 30px;
+  }
+
+  /* Subnav Quick Jumps */
+  .about-subnav {
+    position: sticky;
+    top: 76px;
+    z-index: 40;
+    background: var(--surface-glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 0;
+    margin-bottom: 40px;
+  }
+
+  .about-subnav-inner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+  .about-subnav-inner::-webkit-scrollbar { display: none; }
+
+  .subnav-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: var(--radius-pill);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ink-secondary);
+    white-space: nowrap;
+    transition: all .2s ease;
+  }
+
+  .subnav-pill:hover {
+    color: var(--steel-cyan);
+    border-color: var(--steel-cyan);
+    background: var(--cyan-tint);
+    transform: translateY(-1px);
+  }
+
+  .about-section {
+    padding: 70px 0;
+    position: relative;
+  }
+
+  .about-section.bg-subtle {
+    background: var(--bg-subtle);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Story Grid */
+  .about-story-grid {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 32px;
+    margin-top: 20px;
+  }
+
+  .about-story-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(36, 122, 155, 0.05);
+  }
+
+  .story-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 12px;
+    border-radius: var(--radius-pill);
+    background: var(--cyan-tint);
+    color: var(--steel-cyan);
+    font-size: 0.78rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+
+  .story-heading {
+    font-size: 1.45rem;
+    line-height: 1.35;
+    margin-bottom: 18px;
+    color: var(--ink);
+  }
+
+  .story-text {
+    color: var(--ink-secondary);
+    line-height: 1.7;
+    margin-bottom: 16px;
+    font-size: 0.96rem;
+  }
+
+  .story-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  .story-metric-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .metric-val {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--steel-cyan);
+  }
+
+  .metric-lbl {
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  /* Commitment Card */
+  .about-commitment-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 38px;
+    box-shadow: 0 4px 20px rgba(36, 122, 155, 0.05);
+  }
+
+  .commitment-title {
+    font-size: 1.25rem;
+    margin-bottom: 24px;
+    color: var(--ink);
+  }
+
+  .commitment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .commitment-list li {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .commitment-bullet {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--cyan-tint);
+    color: var(--steel-cyan);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .commitment-list strong {
+    display: block;
+    font-size: 0.98rem;
+    margin-bottom: 4px;
+    color: var(--ink);
+  }
+
+  .commitment-list p {
+    font-size: 0.88rem;
+    color: var(--ink-secondary);
+    line-height: 1.55;
+  }
+
+  /* Principles Grid */
+  .principles-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-bottom: 44px;
+  }
+
+  .principle-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 32px;
+    transition: all .25s ease;
+  }
+
+  .principle-card:hover {
+    border-color: var(--steel-cyan);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(36, 122, 155, 0.08);
+  }
+
+  .principle-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+
+  .principle-num {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--steel-cyan);
+  }
+
+  .principle-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: var(--radius-pill);
+    background: var(--cyan-tint);
+    color: var(--steel-cyan);
+  }
+
+  .principle-title {
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+    color: var(--ink);
+  }
+
+  .principle-desc {
+    font-size: 0.92rem;
+    color: var(--ink-secondary);
+    line-height: 1.6;
+  }
+
+  /* Comparison Table */
+  .comparison-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 36px;
+    box-shadow: 0 4px 20px rgba(36, 122, 155, 0.05);
+  }
+
+  .comparison-heading {
+    font-size: 1.25rem;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  .comparison-table-wrapper {
+    overflow-x: auto;
+  }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+  }
+
+  .comparison-table th {
+    background: var(--bg);
+    color: var(--ink);
+    padding: 14px 18px;
+    text-align: left;
+    font-weight: 700;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .comparison-table td {
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.55;
+  }
+
+  .text-risk {
+    color: #C0392B;
+    background: rgba(192, 57, 43, 0.04);
+  }
+
+  .text-safe {
+    color: var(--steel-cyan-dark);
+    font-weight: 600;
+    background: var(--cyan-tint);
+  }
+
+  /* Detailed Tools Section */
+  .tools-detailed-container {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
+
+  .tool-category-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 36px;
+    box-shadow: 0 4px 20px rgba(36, 122, 155, 0.04);
+  }
+
+  .category-header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 20px;
+    margin-bottom: 28px;
+  }
+
+  .category-title {
+    font-size: 1.3rem;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .category-desc {
+    font-size: 0.92rem;
+    color: var(--ink-secondary);
+  }
+
+  .tools-item-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 22px;
+  }
+
+  .tool-detail-card {
+    background: var(--surface-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all .25s ease;
+  }
+
+  .tool-detail-card:hover {
+    border-color: var(--steel-cyan);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(36, 122, 155, 0.08);
+  }
+
+  .tool-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .tool-name {
+    font-size: 1.1rem;
+    color: var(--ink);
+    margin-bottom: 3px;
+  }
+
+  .tool-role {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--steel-cyan);
+    font-family: var(--font-mono);
+  }
+
+  .tool-badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: var(--radius-pill);
+    background: var(--border);
+    color: var(--ink-secondary);
+    white-space: nowrap;
+  }
+
+  .tool-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .tool-point {
+    font-size: 0.86rem;
+    line-height: 1.55;
+  }
+
+  .point-label {
+    display: block;
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--ink-muted);
+    margin-bottom: 2px;
+  }
+
+  .point-desc {
+    color: var(--ink-secondary);
+  }
+
+  .point-benefit {
+    padding-top: 10px;
+    border-top: 1px dashed var(--border);
+  }
+
+  .point-benefit .point-label {
+    color: var(--steel-cyan);
+    font-weight: 700;
+  }
+
+  .point-benefit .point-desc {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  /* Worksteps Grid */
+  .worksteps-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .workstep-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: all .25s ease;
+  }
+
+  .workstep-card:hover {
+    border-color: var(--steel-cyan);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(36, 122, 155, 0.08);
+  }
+
+  .workstep-num-badge {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-xs);
+    background: var(--steel-cyan);
+    color: #FFFFFF;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+  }
+
+  .workstep-title {
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+    color: var(--ink);
+  }
+
+  .workstep-desc {
+    font-size: 0.92rem;
+    color: var(--ink-secondary);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex-grow: 1;
+  }
+
+  .workstep-output {
+    background: var(--cyan-tint);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    font-size: 0.84rem;
+  }
+
+  .output-label {
+    display: block;
+    font-weight: 700;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    color: var(--steel-cyan-dark);
+    margin-bottom: 3px;
+  }
+
+  .output-text {
+    color: var(--ink);
+    line-height: 1.45;
+  }
+
+  @media (max-width: 900px) {
+    .about-story-grid { grid-template-columns: 1fr; }
+    .principles-grid { grid-template-columns: 1fr; }
+    .worksteps-grid { grid-template-columns: 1fr; }
+    .tools-item-grid { grid-template-columns: 1fr; }
+  }
+</style>
+

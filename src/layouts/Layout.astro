@@ -30,10 +30,14 @@ const {
   <!-- Favicon Bulat -->
   <link rel="icon" href="/logotrans.png" type="image/png" />
 
-  <!-- Google Fonts: Instrument Sans + Inter + JetBrains Mono -->
+  <!-- Google Fonts: Asynchronous Non-Blocking Load -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'" />
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+  </noscript>
 
   <!-- Astro View Transitions for Ultra-Smooth Page Transitions -->
   <ClientRouter />
@@ -55,8 +59,40 @@ const {
 </head>
 <body>
 
-  <!-- Top Cyan Shimmer Progress Bar (Spektakuler saat transisi halaman) -->
+  <!-- Top Cyan Shimmer Progress Bar -->
   <div id="page-progress-bar" style="position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg, #56C5E8, #247A9B, #86D9F3);box-shadow:0 0 12px #56C5E8;z-index:9999;transition:width 0.25s ease, opacity 0.3s ease;opacity:0;pointer-events:none;"></div>
+
+  <!-- ZeroBug Kinetic Downward Plunge Transition ("Transisi Menghujam") -->
+  <div id="page-plunge" class="page-plunge" aria-hidden="true" transition:persist="page-plunge">
+    <div class="page-plunge__layer page-plunge__layer--accent"></div>
+    <div class="page-plunge__layer page-plunge__layer--base">
+      <div class="page-plunge__blade"></div>
+      <div class="page-plunge__content">
+        <div class="page-plunge__spear" aria-hidden="true">
+          <svg class="page-plunge__spear-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="2" x2="12" y2="19"></line>
+            <polyline points="5 12 12 19 19 12"></polyline>
+          </svg>
+        </div>
+        <div class="page-plunge__badge">
+          <div class="page-plunge__emblem">
+            <img src="/logotrans.png" alt="ZeroBug Team Logo" class="page-plunge__logo-img" />
+          </div>
+          <div class="page-plunge__brand">
+            <span class="page-plunge__title">Zero<span>Bug</span></span>
+          </div>
+        </div>
+        <div class="page-plunge__thrust-lines" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Atlas Motion Minimalist Floating Scrollbar Indicator -->
+  <div id="atlas-scroll-indicator" class="atlas-scroll-indicator" aria-hidden="true" transition:persist="scroll-indicator">
+    <div id="atlas-scroll-bar" class="atlas-scroll-bar"></div>
+  </div>
 
   <!-- SVG Sprite Definitions: Official Lucide Icons (Shadcn UI Standard) -->
   <svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false">
@@ -140,18 +176,65 @@ const {
       <symbol id="icon-shield-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>
       </symbol>
+
+      <!-- Lucide: Github -->
+      <symbol id="icon-github" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/>
+      </symbol>
     </defs>
   </svg>
 
   <slot />
 
   <script is:inline>
-    // Efek Progress Shimmer Line saat transisi halaman Astro
+    // Efek Transisi Menghujam (Kinetic Downward Plunge Transition)
+    var isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var bar = document.getElementById('page-progress-bar');
-    document.addEventListener('astro:before-preparation', function () {
+    var plungeResetTimer = null;
+
+    document.addEventListener('astro:before-preparation', function (event) {
       if (bar) {
         bar.style.opacity = '1';
         bar.style.width = '70%';
+      }
+
+      if (isReducedMotion) return;
+      var plunge = document.getElementById('page-plunge');
+      if (!plunge) return;
+
+      if (plungeResetTimer) {
+        clearTimeout(plungeResetTimer);
+        plungeResetTimer = null;
+      }
+
+      plunge.classList.remove('is-diving-out', 'is-reset');
+      plunge.classList.add('is-active', 'is-diving-in');
+
+      var originalLoader = event.loader;
+      event.loader = async function () {
+        // Durasi hujaman masuk layar dari atas
+        await new Promise(function (resolve) { setTimeout(resolve, 440); });
+        await originalLoader();
+      };
+    });
+
+    document.addEventListener('astro:after-swap', function () {
+      var plunge = document.getElementById('page-plunge');
+      if (plunge && plunge.classList.contains('is-diving-in')) {
+        requestAnimationFrame(function () {
+          // Fase 2: Meneruskan hujaman keluar layar ke arah bawah
+          plunge.classList.remove('is-diving-in');
+          plunge.classList.add('is-diving-out');
+
+          plungeResetTimer = setTimeout(function () {
+            // Reset posisi kembali ke atas (-100%) secara instan tanpa animasi
+            plunge.classList.add('is-reset');
+            plunge.classList.remove('is-diving-out', 'is-active');
+            setTimeout(function () {
+              plunge.classList.remove('is-reset');
+            }, 60);
+          }, 460);
+        });
       }
     });
 
@@ -199,6 +282,7 @@ const {
         navToggle.classList.remove('is-active');
         navToggle.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
+        if (window.__lenis) window.__lenis.start();
       }
 
       if (navToggle && mainNav) {
@@ -209,6 +293,10 @@ const {
           newNavToggle.classList.toggle('is-active', isOpen);
           newNavToggle.setAttribute('aria-expanded', String(isOpen));
           document.body.style.overflow = isOpen ? 'hidden' : '';
+          if (window.__lenis) {
+            if (isOpen) window.__lenis.stop();
+            else window.__lenis.start();
+          }
         });
 
         mainNav.querySelectorAll('a').forEach(function (link) {
@@ -242,6 +330,24 @@ const {
 
     // Jalankan saat load pertama & setiap transisi halaman Astro selesai
     document.addEventListener('astro:page-load', initInteractiveUI);
+  </script>
+
+  <!-- Modul Physics-based Momentum Smooth Scroll Engine (Ala Atlas Motion) -->
+  <script>
+    import { initAtlasScroll, pauseAtlasScroll, resumeAtlasScroll, resetAtlasScrollTop } from '../scripts/atlas-scroll.js';
+
+    document.addEventListener('astro:page-load', () => {
+      initAtlasScroll();
+    });
+
+    document.addEventListener('astro:before-preparation', () => {
+      pauseAtlasScroll();
+    });
+
+    document.addEventListener('astro:after-swap', () => {
+      resetAtlasScrollTop();
+      resumeAtlasScroll();
+    });
   </script>
 </body>
 </html>

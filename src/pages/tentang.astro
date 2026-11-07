@@ -3,7 +3,11 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import CtaBanner from '../components/CtaBanner.astro';
 import Footer from '../components/Footer.astro';
+import { techLogos } from '../data/techLogos.js';
 import '../styles/global.css';
+
+// Mapping logo icon resmi untuk ditampilkan di setiap kartu alat
+const iconMap = Object.fromEntries(techLogos.map((t) => [t.id, t]));
 
 // Data Alat Kerja Mendalam (Spesifikasi Teknis & Manfaat untuk Klien)
 const detailedTools = [
@@ -16,21 +20,24 @@ const detailedTools = [
         role: "Enterprise Web Core & API Engine",
         why: "Arsitektur stabil kelas dunia dengan sistem antrian job background otomatis, ORM Eloquent yang aman dari SQL Injection, dan dokumentasi ekosistem terlengkap.",
         benefit: "Sistem bisnis Anda mudah dirawat jangka panjang dan tidak bergantung pada developer perorangan.",
-        badge: "Backend Utama"
+        badge: "Backend Utama",
+        icons: ["laravel", "php"]
       },
       {
         name: "Express.js & Node.js",
         role: "Microservices & Real-Time Gateway",
         why: "Berbasis event-driven non-blocking I/O dengan latensi sub-milidetik, sangat efisien untuk menangani ribuan koneksi bersamaan.",
         benefit: "Chatting, sinkronisasi data langsung, dan streaming event sensor berjalan instan tanpa lag.",
-        badge: "Real-Time Engine"
+        badge: "Real-Time Engine",
+        icons: ["express", "nodedotjs"]
       },
       {
         name: "Python Automation",
         role: "Otomasi Data & Log Processing",
         why: "Bahasa standar industri untuk analitik data, automasi skrip periodik, dan integrasi kecerdasan buatan (AI/ML).",
         benefit: "Laporan harian otomatis terkirim rapi dan beban kerja manual tim operasional berkurang drastis.",
-        badge: "Automasi"
+        badge: "Automasi",
+        icons: ["python"]
       }
     ]
   },
@@ -43,28 +50,32 @@ const detailedTools = [
         role: "Relational Enterprise Database",
         why: "Kepatuhan penuh ACID, dukungan tipe data JSONB fleksibel, dan integritas transaksi finansial yang tak tertandingi.",
         benefit: "Data keuangan, stok, dan riwayat penting Anda terjamin 100% konsisten dan tidak pernah korup.",
-        badge: "Data Kritis"
+        badge: "Data Kritis",
+        icons: ["postgresql"]
       },
       {
         name: "MySQL Enterprise",
         role: "High-Throughput Relational Storage",
         why: "Dukungan indexing komprehensif, replikasi cepat, dan standar industri paling populer di server hosting.",
         benefit: "Biaya server lebih efisien dan kompatibel dengan hampir semua penyedia infrastruktur di dunia.",
-        badge: "Standar Industri"
+        badge: "Standar Industri",
+        icons: ["mysql"]
       },
       {
         name: "Redis In-Memory Cache",
         role: "Sub-Millisecond Data Accelerator",
         why: "Menyimpan data populer dan sesi pengguna langsung di memori RAM sehingga tidak membebani database utama.",
         benefit: "Aplikasi tetap membuka halaman dalam sekejap mata meski sedang diakses ribuan pengguna bersamaan.",
-        badge: "Akselerator"
+        badge: "Akselerator",
+        icons: ["redis"]
       },
       {
         name: "Supabase & Firebase",
         role: "Modern Cloud State & Live Sync",
         why: "Fitur otentikasi instan, storage file terintegrasi, dan notifikasi push langsung ke perangkat pengguna.",
         benefit: "Waktu pengembangan fitur notifikasi dan login aplikasi mobile menjadi 3x lebih cepat.",
-        badge: "Cloud Sync"
+        badge: "Cloud Sync",
+        icons: ["supabase", "firebase"]
       }
     ]
   },
@@ -77,28 +88,40 @@ const detailedTools = [
         role: "Cross-Platform Android & iOS",
         why: "Kompilasi ke kode mesin asli (ARM) dengan render engine Impeller untuk transisi layar super mulus.",
         benefit: "Satu kali biaya pembuatan langsung menghasilkan aplikasi untuk pengguna Android dan iPhone sekaligus.",
-        badge: "Mobile Utama"
+        badge: "Mobile Utama",
+        icons: ["flutter", "dart"]
       },
       {
         name: "Kotlin & Android Native",
         role: "Deep Hardware & Background Service",
         why: "Akses penuh ke API internal Android seperti Bluetooth Low Energy, GPS background, dan driver cetak thermal.",
         benefit: "Aplikasi POS kasir atau pelacakan GPS lapangan dapat berjalan stabil di latar belakang tanpa terhenti sistem.",
-        badge: "Hardware Level"
+        badge: "Hardware Level",
+        icons: ["kotlin", "android"]
+      },
+      {
+        name: "TypeScript & JavaScript",
+        role: "Type-Safe Robust Frontend Logic",
+        why: "Pengecekan tipe data statis saat kompilasi untuk mencegah bug null/undefined sebelum kode dirilis ke pengguna.",
+        benefit: "Sistem aplikasi web terhindar dari error mendadak saat diakses ribuan pengunjung.",
+        badge: "Type-Safe",
+        icons: ["typescript"]
       },
       {
         name: "Astro Framework",
         role: "Modern High-Performance Web Architecture",
         why: "Menggunakan konsep Island Architecture tanpa JavaScript berlebih, menghasilkan nilai Google PageSpeed 98-100.",
         benefit: "Website Anda langsung berada di posisi atas SEO Google dan memuat cepat bahkan dengan sinyal HP lemah.",
-        badge: "Ultra Fast Web"
+        badge: "Ultra Fast Web",
+        icons: ["astro"]
       },
       {
         name: "Tailwind CSS Design System",
         role: "Utility-First Responsive UI",
         why: "Menghasilkan kode CSS terkompresi ekstra mini dengan sistem skala warna, tipografi, dan padding yang presisi.",
         benefit: "Tampilan website terlihat mewah, elegan, dan rapi di semua ukuran layar dari HP kecil hingga monitor 4K.",
-        badge: "Design System"
+        badge: "Design System",
+        icons: ["tailwindcss"]
       }
     ]
   },
@@ -111,28 +134,32 @@ const detailedTools = [
         role: "Smart Controller & Sensor Node",
         why: "Chip mikrokontroler dual-core 240MHz hemat daya dengan modul radio Wi-Fi & Bluetooth 5 terintegrasi.",
         benefit: "Memungkinkan alat pabrik, pintu otomatis, atau tangki cairan terhubung ke internet dengan biaya terjangkau.",
-        badge: "Hardware IoT"
+        badge: "Hardware IoT",
+        icons: ["esp32"]
       },
       {
         name: "MQTT & WebSockets Protocol",
         role: "Lightweight Telemetry Stream",
         why: "Protokol pengiriman data sensor dengan header hanya 2 byte, dirancang khusus untuk kondisi jaringan minim.",
         benefit: "Alat IoT Anda tetap dapat mengirim status data secara stabil meski menggunakan paket data seluler hemat.",
-        badge: "Protokol IoT"
+        badge: "Protokol IoT",
+        icons: ["mqtt"]
       },
       {
         name: "Docker Containerization",
         role: "Isolated Deployment Environment",
         why: "Membungkus kode program beserta seluruh dependensinya ke dalam satu kontainer independen yang terisolasi.",
         benefit: "Aplikasi dijamin berjalan sama persis di komputer pengembang dan di server produksi tanpa error aneh.",
-        badge: "DevOps"
+        badge: "DevOps",
+        icons: ["docker"]
       },
       {
         name: "Cloudflare Edge Security",
         role: "Global CDN, DDoS Shield & SSL",
         why: "Jaringan edge di 300+ kota dunia dengan proteksi serangan DDoS otomatis dan enkripsi HTTPS mutakhir.",
         benefit: "Website Anda aman dari serangan hacker/bot jahat dan langsung dapat diakses cepat dari wilayah mana pun.",
-        badge: "Keamanan"
+        badge: "Keamanan",
+        icons: ["cloudflare"]
       }
     ]
   }
@@ -193,33 +220,11 @@ const corePrinciples = [
 
 <Layout 
   title="Tentang ZeroBug — Profil, Prinsip & Alat Kerja Detail" 
-  description="Mengenal ZeroBug Team: studio rekayasa perangkat lunak independen, prinsip kerja teruji, spesifikasi alat kerja mendalam, dan alur pengerjaan transparan."
+  description="Mengenal ZeroBug Team: studio pengembang software independen, prinsip kerja teruji, spesifikasi alat kerja mendalam, dan alur pengerjaan transparan."
 >
   <Header />
 
   <main class="about-page">
-    <!-- SUB-NAV / QUICK JUMPS -->
-    <nav class="about-subnav" aria-label="Navigasi Halaman Tentang">
-      <div class="container about-subnav-inner">
-        <a href="#profil" class="subnav-pill">
-          <svg class="icon"><use href="#icon-layers"/></svg>
-          <span>Profil ZeroBug</span>
-        </a>
-        <a href="#prinsip" class="subnav-pill">
-          <svg class="icon"><use href="#icon-check"/></svg>
-          <span>Prinsip Kerja</span>
-        </a>
-        <a href="#alat-kerja" class="subnav-pill">
-          <svg class="icon"><use href="#icon-code"/></svg>
-          <span>Alat Kerja Detail</span>
-        </a>
-        <a href="#cara-kerja" class="subnav-pill">
-          <svg class="icon"><use href="#icon-arrow-right"/></svg>
-          <span>Cara Kerja</span>
-        </a>
-      </div>
-    </nav>
-
     <!-- SECTION 1: PROFIL ZEROBUG -->
     <section class="about-section" id="profil">
       <div class="container">
@@ -227,7 +232,7 @@ const corePrinciples = [
           <span class="eyebrow">// PROFIL ZEROBUG TEAM</span>
           <h1 class="section-title">Membangun Sistem &amp; Produk Digital yang Siap Diandalkan</h1>
           <p class="section-desc">
-            ZeroBug Team adalah studio rekayasa perangkat lunak (*software engineering*) independen yang berfokus merancang Website Performa Tinggi, Aplikasi Mobile, dan Integrasi Alat Pintar (IoT).
+            ZeroBug Team adalah studio pengembang software independen yang berfokus merancang Website Performa Tinggi, Aplikasi Mobile, dan Integrasi Alat Pintar (IoT).
           </p>
         </div>
 
@@ -301,7 +306,7 @@ const corePrinciples = [
     <section class="about-section bg-subtle" id="prinsip">
       <div class="container">
         <div class="section-head reveal" style="text-align: center; max-width: 720px; margin: 0 auto 46px;">
-          <span class="eyebrow">// STANDAR REKAYASA &amp; ETIKA</span>
+          <span class="eyebrow">// STANDAR KUALITAS &amp; ETIKA</span>
           <h2 class="section-title">Prinsip Kerja yang Menjadi Pegangan Kami</h2>
           <p class="section-desc" style="margin: 0 auto;">
             Empat standar fundamental yang kami terapkan di setiap baris program untuk memastikan investasi software Anda aman dan berkelanjutan.
@@ -384,9 +389,18 @@ const corePrinciples = [
                 {cat.items.map((tool) => (
                   <div class="tool-detail-card">
                     <div class="tool-card-top">
-                      <div>
-                        <h4 class="tool-name">{tool.name}</h4>
-                        <span class="tool-role">{tool.role}</span>
+                      <div class="tool-head-group">
+                        {tool.icons && tool.icons.length > 0 && (
+                          <div class="tool-icon-cluster">
+                            {tool.icons.map((id) => (
+                              <span class="tool-icon-pill" title={iconMap[id]?.name} aria-label={iconMap[id]?.name} set:html={iconMap[id]?.svg} />
+                            ))}
+                          </div>
+                        )}
+                        <div>
+                          <h4 class="tool-name">{tool.name}</h4>
+                          <span class="tool-role">{tool.role}</span>
+                        </div>
                       </div>
                       <span class="tool-badge">{tool.badge}</span>
                     </div>
@@ -451,50 +465,6 @@ const corePrinciples = [
   }
 
   /* Subnav Quick Jumps */
-  .about-subnav {
-    position: sticky;
-    top: 76px;
-    z-index: 40;
-    background: var(--surface-glass);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    padding: 12px 0;
-    margin-bottom: 40px;
-  }
-
-  .about-subnav-inner {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    overflow-x: auto;
-    padding-bottom: 4px;
-    scrollbar-width: none;
-  }
-  .about-subnav-inner::-webkit-scrollbar { display: none; }
-
-  .subnav-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
-    border-radius: var(--radius-pill);
-    background: var(--surface);
-    border: 1px solid var(--border);
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--ink-secondary);
-    white-space: nowrap;
-    transition: all .2s ease;
-  }
-
-  .subnav-pill:hover {
-    color: var(--steel-cyan);
-    border-color: var(--steel-cyan);
-    background: var(--cyan-tint);
-    transform: translateY(-1px);
-  }
-
   .about-section {
     padding: 70px 0;
     position: relative;
@@ -802,6 +772,44 @@ const corePrinciples = [
     justify-content: space-between;
     gap: 12px;
     margin-bottom: 16px;
+  }
+
+  .tool-head-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .tool-icon-cluster {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .tool-icon-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 6px;
+    transition: transform .25s ease, border-color .25s ease;
+  }
+
+  .tool-detail-card:hover .tool-icon-pill {
+    transform: translateY(-2px) scale(1.08);
+    border-color: var(--steel-cyan);
+  }
+
+  .tool-icon-pill svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
   }
 
   .tool-name {
